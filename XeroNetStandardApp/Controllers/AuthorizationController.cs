@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
 using System.Text.Json;
+using XeroNetStandardApp.Ledgerflow;
 
 namespace XeroNetStandardApp.Controllers
 {
@@ -27,12 +28,12 @@ namespace XeroNetStandardApp.Controllers
         /// Generate random guid for site security
         /// </summary>
         /// <returns></returns>
-        public IActionResult Index()
+        public IActionResult Index(AccountingServiceProvider provider)
         {
             var clientState = Guid.NewGuid().ToString();
             StoreState(clientState);
 
-            return Redirect(_client.BuildLoginUri(clientState));
+            return Redirect(LedgerflowUtilities.GetLedgerflowLoginUrlForProvider(this.xeroConfig.Value, provider, clientState));
         }
 
         // GET /Authorization/Callback
@@ -52,19 +53,17 @@ namespace XeroNetStandardApp.Controllers
 
             var xeroToken = (XeroOAuth2Token) await _client.RequestAccessTokenAsync(code);
 
-            if (xeroToken.IdToken != null && !JwtUtils.validateIdToken(xeroToken.IdToken, xeroConfig.Value.ClientId))
+            var tokenValidation = await TokenValidator.GetTokenValidationAsync(xeroToken, this.xeroConfig.Value);
+            if (tokenValidation.IsValid)
             {
-                return Content("ID token is not valid");
+                tokenIO.StoreToken(xeroToken);
+                return RedirectToAction("Index", "OrganisationInfo");
             }
-
-            if (xeroToken.AccessToken != null && !JwtUtils.validateAccessToken(xeroToken.AccessToken))
+            else
             {
-                return Content("Access token is not valid");
+                return Content(tokenValidation.Message);
             }
-
-            tokenIO.StoreToken(xeroToken);
-            return RedirectToAction("Index", "OrganisationInfo");
-        }
+		}
 
         /// <summary>
         /// Disconnect org connections to sample app. Destroys token

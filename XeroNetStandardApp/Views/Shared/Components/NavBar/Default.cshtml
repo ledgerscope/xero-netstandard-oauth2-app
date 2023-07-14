@@ -19,28 +19,24 @@
                 }
             </select>
         }
-        
+
         <ul class="navbar-nav ml-auto">
-          
-            @if (Model == false) {
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index">
-                        <img src="~/images/connect-white.svg" alt="Connect to Xero button" width="170">
-                    </a>
-                </li>
-            } else {
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index">Reconnect to Xero</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Revoke">Revoke Xero Token</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Disconnect">
-                        <img src="~/images/disconnect-white.svg" alt="Disconnect to Xero button" width="170">
-                    </a>
-                </li>
-            }
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="SageCloud">[Connect to Sage]</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QuickBooksOnline">[Connect to Quickbooks]</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="Xero">[Connect to Xero]</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Revoke">[Revoke Token]</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Disconnect">[Disconnect]</a>
+            </li>
         </ul>
+
     </div>
 </nav>

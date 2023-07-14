@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Xero.NetStandard.OAuth2.Client;
 using Xero.NetStandard.OAuth2.Config;
+using XeroNetStandardApp.Ledgerflow;
 
 namespace XeroNetStandardApp.Controllers
 {
@@ -14,7 +15,7 @@ namespace XeroNetStandardApp.Controllers
 
         protected ApiAccessorController(IOptions<XeroConfiguration> xeroConfig) : base(xeroConfig)
         {
-            Api = new T();
+            Api = LedgerflowUtilities.GetApi<T>(xeroConfig.Value);
         }
     }
 }
