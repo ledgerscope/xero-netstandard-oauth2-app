@@ -45,6 +45,12 @@ namespace XeroNetStandardApp.Controllers
         /// <returns>Redirect to organisations page</returns>
         public async Task<IActionResult> Callback(string code, string state)
         {
+            if (string.IsNullOrEmpty(code))
+            {
+                // User did not give consent to connecting.
+                return Redirect("~/");
+            }
+
             var clientState = GetCurrentState();
             if (state != clientState)
             {
