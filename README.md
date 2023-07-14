@@ -14,6 +14,15 @@ Your Partner App has a _ClientId_ and _ClientSecret_, created for you when you c
 
 That should be all that you need to get your started, and enjoying using Ledgerflow to connect to a variety of accounting service providers through one unified interface.
 
+### Usage with Xero
+
+The project works with Xero's API as well as with Ledgerflow.  To use it with Xero, you'll need to:
+* Register [your developer app with Xero](https://developer.xero.com/app/manage/)
+* Update the project's _appsettings.json_ with the _ClientId_ and _ClientSecret_ of your Xero developer app
+* In _appsettings.json_, delete the three "...BaseUri" values so that it will default to using the _xero.com_ endpoints
+
+To delete the three "...BaseUri" values, delete the entirety of each line in which these keys appear: _XeroApiBaseUri_, _XeroLoginBaseUri_, _XeroIdentityBaseUri_. Also, on the "State" line immediately above those entries, you will have to delete the comma at the end of that line so that the _appsettings.json_ file is still valid JSON.
+
 # Xero NetStandard OAuth 2.0 Starter App
 This is a companion app built with .NET Core 3.1 MVC to demonstrate Xero OAuth 2.0 Client Authentication & OAuth 2.0 APIs.
 
