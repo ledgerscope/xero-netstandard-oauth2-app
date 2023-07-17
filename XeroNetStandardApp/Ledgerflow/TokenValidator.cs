@@ -16,7 +16,7 @@ namespace XeroNetStandardApp.Ledgerflow
 	/// <remarks>Xero's JwtUtils has a hard-coded test that the issuer is "https://identity.xero.com",
 	/// which is not applicable to in the case of authenticating with Ledgerflow.
 	/// This class does the same sort of validation, but without hard-coded issuer value check - 
-	/// checking that it is signed by an authorized signatory is sufficient.
+	/// it is sufficent that the public key from the well-known path in the issuing domain confirms that it signed it.
 	/// </remarks>
 	public static class TokenValidator
 	{
