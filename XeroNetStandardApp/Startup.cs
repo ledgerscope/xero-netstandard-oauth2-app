@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using System;
 using Xero.NetStandard.OAuth2.Config;
 
 namespace XeroNetStandardApp
@@ -62,6 +64,27 @@ namespace XeroNetStandardApp
 
 
             app.UseMvc();
+
+            var xeroConfig = app.ApplicationServices.GetRequiredService <IOptions<XeroConfiguration>>();
+            checkXeroConfig(xeroConfig.Value);
+        }
+
+        private void checkXeroConfig(XeroConfiguration config)
+        {
+            // Final slashes cause problems later, so we catch them here.
+            checkXeroConfigUrl(config.XeroApiBaseUri, nameof(config.XeroApiBaseUri));
+            checkXeroConfigUrl(config.XeroLoginBaseUri, nameof(config.XeroLoginBaseUri));
+            checkXeroConfigUrl(config.XeroIdentityBaseUri, nameof(config.XeroIdentityBaseUri));
+        }
+
+        private void checkXeroConfigUrl(string url, string name)
+        {
+            if (string.IsNullOrEmpty(url))
+                throw new ApplicationException($"{name} config value is not set.");
+        
+            char lastChar = url[url.Length - 1];
+            if (lastChar == '/' || lastChar == '\\')
+                throw new ApplicationException($"{name} config value must not end in slash.");
         }
     }
 }
