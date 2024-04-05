@@ -26,15 +26,12 @@ namespace XeroNetStandardApp.ViewComponents
                 var tenantIdGuid = Guid.Parse(tenantId);
 
                 ViewBag.OrgPickerCurrentTenantId = tenantIdGuid;
-                ViewBag.OrgPickerTenantList = xeroToken?.Tenants.Select(
-                    t => new TenantDetails { TenantName = t.TenantName, TenantId = t.TenantId })
+                ViewBag.OrgPickerTenantList = xeroToken?.Tenants
+                    .Select(t => new TenantDetails { TenantName = t.TenantName, TenantId = t.TenantId })
                     .ToList();
             }
 
             return Task.FromResult<IViewComponentResult>(View(tokenIO.TokenExists()));
         }
-
     }
-
 }
-

@@ -34,10 +34,12 @@ namespace XeroNetStandardApp.Ledgerflow
 				// you intend to connect to on the far side of Ledgerflow.
 
 				var configUri = new UriHandler(xeroConfig.XeroLoginBaseUri);
-				configUri.SetPath($"/{(int)provider}{configUri.Path.TrimEnd('/')}");
+
+				if (provider != AccountingServiceProvider.NotSet)
+					configUri.SetPath($"/{(int)provider}{configUri.Path.TrimEnd('/')}");
 
 				var config = GetConfigurationCopy(xeroConfig);
-				config.XeroLoginBaseUri = configUri.ToString();
+				config.XeroLoginBaseUri = configUri.ToString().TrimEnd('/');
 
 				client = new XeroClient(config);
 			}
