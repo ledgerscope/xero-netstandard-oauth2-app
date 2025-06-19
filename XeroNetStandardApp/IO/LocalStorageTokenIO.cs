@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using Xero.NetStandard.OAuth2.Token;
@@ -11,19 +12,12 @@ namespace XeroNetStandardApp.IO
     public sealed class LocalStorageTokenIO : ITokenIO
     {
         // Singleton
-        private static LocalStorageTokenIO _instance;
-        private static readonly object Lock = new object();
+        private static LocalStorageTokenIO _instance = new LocalStorageTokenIO();
 
         /// <summary>
         /// Thread safe instance retrieval
         /// </summary>
-        public static LocalStorageTokenIO Instance
-        {
-            get
-            {
-                lock (Lock) return _instance ??= new LocalStorageTokenIO();
-            }
-        }
+        public static LocalStorageTokenIO Instance => _instance;
 
         // Prevent object being instantiated outside of class
         private LocalStorageTokenIO(){}
@@ -52,12 +46,6 @@ namespace XeroNetStandardApp.IO
         /// <param name="xeroToken">Xero OAuth2 token to save</param>
         public void StoreToken(XeroOAuth2Token xeroToken)
         {
-
-            if (!File.Exists(TokenFilePath))
-            {
-                File.Create(TokenFilePath).Dispose();
-            }
-
             var serializedToken = JsonSerializer.Serialize(xeroToken);
             File.WriteAllText(TokenFilePath, serializedToken);
         }
@@ -103,10 +91,6 @@ namespace XeroNetStandardApp.IO
         public void StoreTenantId(string tenantId)
         {
             var serializedTenantId = JsonSerializer.Serialize(new TenantIdModel { CurrentTenantId = tenantId });
-            if (!File.Exists(TenantIdFilePath))
-            {
-                File.Create(TenantIdFilePath).Dispose();
-            }
 
             File.WriteAllText(TenantIdFilePath, serializedTenantId);
         }
@@ -137,6 +121,4 @@ namespace XeroNetStandardApp.IO
     {
         public string CurrentTenantId { get; set; }
     }
-
 }
-
