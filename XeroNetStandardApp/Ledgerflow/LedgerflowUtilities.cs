@@ -63,6 +63,10 @@ namespace XeroNetStandardApp.Ledgerflow
 				apiUri.SetPath("api.xro/2.0");
 				return (T)Activator.CreateInstance(typeof(T), apiUri.ToString());
 			}
+			else if (typeof(IdentityApi).IsAssignableFrom(typeof(T)))
+			{
+				return (T)Activator.CreateInstance(typeof(T), apiUri.ToString());
+			}
 			else
 			{
 				throw new NotImplementedException($"Ledgerflow supports {nameof(AccountingApi)}; it does not support {typeof(T).Name}.");
