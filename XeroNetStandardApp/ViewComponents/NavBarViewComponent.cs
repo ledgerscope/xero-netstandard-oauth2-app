@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,12 @@ namespace XeroNetStandardApp.ViewComponents
 {
     public class NavBarViewComponent : ViewComponent
     {
+        private readonly IConfiguration _configuration;
+        public NavBarViewComponent(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public class TenantDetails
         {
             public string TenantName { get; set; }
@@ -16,6 +23,8 @@ namespace XeroNetStandardApp.ViewComponents
 
         public Task<IViewComponentResult> InvokeAsync()
         {
+            ViewBag.IncludeBetaSystems = _configuration.GetValue<bool>("IncludeBetaSystems");
+
             var tokenIO = LocalStorageTokenIO.Instance;
 
             var xeroToken = tokenIO.GetToken();

@@ -33,15 +33,20 @@
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QuickBooksOnline">[Quickbooks Online]</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QuickBooksOnlineSandbox">[QBO Sandbox]</a>
+
+            @if (ViewBag.IncludeBetaSystems)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QuickBooksOnlineSandbox">[QBO Sandbox]</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="Xero">[Xero]</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="Ledgerflow">[Ledgerflow]</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="Xero">[Xero]</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="Ledgerflow">[Ledgerflow]</a>
-            </li>
+            }
+
             <li class="nav-item" style="margin-left: 10px;">
                 <span class="navbar-text font-weight-bold">ADMIN:</span>
             </li>
