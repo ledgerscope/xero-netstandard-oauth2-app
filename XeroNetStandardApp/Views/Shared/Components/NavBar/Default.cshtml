@@ -1,7 +1,7 @@
 @model bool
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Xero .NET Standard</a>
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LFI test client</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,22 +22,28 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="SageDesktop">[Connect to Sage Desktop]</a>
+                <span class="navbar-text font-weight-bold">CONNECT:</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="SageCloud">[Connect to Sage Cloud]</a>
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="SageDesktop">[Sage Desktop]</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QuickBooksOnline">[Connect to Quickbooks Online]</a>
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="SageCloud">[Sage Cloud]</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QuickBooksOnlineSandbox">[Connect to Quickbooks Online Sandbox]</a>
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QuickBooksOnline">[Quickbooks Online]</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="Xero">[Connect to Xero]</a>
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QuickBooksOnlineSandbox">[QBO Sandbox]</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="Ledgerflow">[Connect via Ledgerflow]</a>
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="Xero">[Xero]</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="Ledgerflow">[Ledgerflow]</a>
+            </li>
+            <li class="nav-item" style="margin-left: 10px;">
+                <span class="navbar-text font-weight-bold">ADMIN:</span>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Revoke">[Revoke Token]</a>
