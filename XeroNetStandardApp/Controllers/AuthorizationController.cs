@@ -28,7 +28,7 @@ namespace XeroNetStandardApp.Controllers
         /// Generate random guid for site security
         /// </summary>
         /// <returns></returns>
-        public IActionResult Index(AccountingServiceProvider provider)
+        public IActionResult Index(string provider)
         {
             var clientState = Guid.NewGuid().ToString();
             StoreState(clientState);
@@ -38,7 +38,7 @@ namespace XeroNetStandardApp.Controllers
 
         // GET /Authorization/Callback
         /// <summary>
-        /// Callback validating returned data to prevent cross site forgey attacks
+        /// Callback validating returned data to prevent cross site forgery attacks
         /// </summary>
         /// <param name="code">Returned code</param>
         /// <param name="state">Returned state</param>

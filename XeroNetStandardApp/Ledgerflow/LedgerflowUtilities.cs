@@ -12,13 +12,15 @@ namespace XeroNetStandardApp.Ledgerflow
 		/// Get OAuth initiation url for Ledgerflow, appropriate to the
 		/// Accounting Software Provider that you want it to connect to.
 		/// </summary>
-		public static string GetLedgerflowLoginUrlForProvider(XeroConfiguration xeroConfig, AccountingServiceProvider provider, string state)
+		public static string GetLedgerflowLoginUrlForProvider(XeroConfiguration xeroConfig, string provider, string state)
 		{
+			provider = provider?.Trim() ?? string.Empty;
+
 			XeroClient client;
 			var loginUri = new UriHandler(xeroConfig.XeroLoginBaseUri);
 			if (loginUri.IsXeroHost)
 			{
-				if (provider == AccountingServiceProvider.NotSet || provider == AccountingServiceProvider.Xero)
+				if (provider.Length == 0 || provider == "0" || isXeroRequest(provider))
 				{
 					// The Xero way.
 					client = new XeroClient(xeroConfig);
@@ -34,7 +36,8 @@ namespace XeroNetStandardApp.Ledgerflow
 				// you intend to connect to on the far side of Ledgerflow.
 
 				var configUri = new UriHandler(xeroConfig.XeroLoginBaseUri);
-				configUri.SetPath($"/{(int)provider}{configUri.Path.TrimEnd('/')}");
+				string path = $"/{provider}{configUri.Path.TrimEnd('/')}";
+				configUri.SetPath(path);
 
 				var config = GetConfigurationCopy(xeroConfig);
 				config.XeroLoginBaseUri = configUri.ToString();
@@ -44,6 +47,9 @@ namespace XeroNetStandardApp.Ledgerflow
 
 			return client.BuildLoginUri(state);
 		}
+
+		private static bool isXeroRequest(string provider)
+			=> provider.Contains("xero", StringComparison.OrdinalIgnoreCase) || provider == "1013";
 
 		private static XeroConfiguration GetConfigurationCopy(XeroConfiguration copyMe)
 		{

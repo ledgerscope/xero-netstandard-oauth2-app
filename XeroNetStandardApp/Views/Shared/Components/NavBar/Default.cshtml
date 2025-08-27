@@ -25,25 +25,25 @@
                 <span class="navbar-text font-weight-bold">CONNECT:</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="SageDesktop">[Sage Desktop]</a>
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="SGD" title="Sage 50, installed">[Sage Desktop]</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="SageCloud">[Sage Cloud]</a>
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="SGO" title="Sage Accounting, SBCA, etc">[Sage Cloud]</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QuickBooksOnline">[Quickbooks Online]</a>
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QBO" title="QuickBooks Online, production keys">[QuickBooks Online]</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QBX" title="QuickBooks Online, development sandbox keys">[QBO Sandbox]</a>
             </li>
 
             @if (ViewBag.IncludeBetaSystems)
             {
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QuickBooksOnlineSandbox">[QBO Sandbox]</a>
+                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="XRO" title="Xero">[Xero]</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="Xero">[Xero]</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="Ledgerflow">[Ledgerflow]</a>
+                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="LFI" title="Connect to whatever via Ledgerscope API">[Ledgerflow]</a>
             </li>
             }
 
