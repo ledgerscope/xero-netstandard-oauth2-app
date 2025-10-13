@@ -1,22 +1,22 @@
-# Ledgerflow implementation
+# Ledgerscope API implementation
 
-[Ledgerscope API](https://docs.ledgerscope.com/) connects to a variety of accounting service providers, and provides access to company accounts in a unified API.  The Ledgerflow API uses Xero's OpenAPI syntax.  So if your application can connect to Xero, Ledgerflow enables you to connect to a variety of other accounting software providers too with just the same client code.
+[Ledgerscope API](https://docs.ledgerscope.com/) connects to a variety of accounting service providers, and provides access to company accounts in a unified API.  Ledgerscope API uses Xero's OpenAPI syntax.  So if your application can connect to Xero, Ledgerscope API enables you to connect to a variety of other accounting software providers too with just the same client code.
 
-This project is the _Xero NetStandard OAuth 2.0 Starter App_ provided by Xero, with a few modifications to make it compatible with Ledgerflow too.
+This project is the _Xero NetStandard OAuth 2.0 Starter App_ provided by Xero, with a few modifications to make it compatible with Ledgerscope API too.
 
-### Usage with Ledgerflow
+### Usage with Ledgerscope API
 
-You'll need to start by creating an account with Ledgerflow.  You can get started for free. See the [Ledgerscope API documentation](https://docs.ledgerscope.com/) for more.
+You'll need to start by creating an account with Ledgerscope API.  You can get started for free. See the [Ledgerscope API documentation](https://docs.ledgerscope.com/) for more.
 
-You will then need to create a Partner App within Ledgerflow, including providing some details for the connection options that you want to make available to your users.  
+You will then need to create a Partner App within Ledgerscope API, including providing some details for the connection options that you want to make available to your users.  
 
-Your Partner App has a _ClientId_ and _ClientSecret_, created for you when you created your Partner App.  Update the _appsettings.json_ in this project with these values.  Also in _appsettings.json_, may also need to update the _CallbackUrl_ for whatever port this project is running on.  Make sure that in your Partner App settings within Ledgerflow, this _CallbackUrl_ is on your list of permitted callback URLs for that app.
+Your Partner App has a _ClientId_ and _ClientSecret_, created for you when you created your Partner App.  Update the _appsettings.json_ in this project with these values.  Also in _appsettings.json_, may also need to update the _CallbackUrl_ for whatever port this project is running on.  Make sure that in your Partner App settings within Ledgerscope API, this _CallbackUrl_ is on your list of permitted callback URLs for that app.
 
-That should be all that you need to get your started, and enjoying using Ledgerflow to connect to a variety of accounting service providers through one unified interface.
+That should be all that you need to get your started, and enjoying using Ledgerscope API to connect to a variety of accounting service providers through one unified interface.
 
 ### Usage with Xero
 
-The project works with Xero's API as well as with Ledgerflow.  To use it with Xero, you'll need to:
+The project works with Xero's API as well as with Ledgerscope API.  To use it with Xero, you'll need to:
 * Register [your developer app with Xero](https://developer.xero.com/app/manage/)
 * Update the project's _appsettings.json_ with the _ClientId_ and _ClientSecret_ of your Xero developer app
 * In _appsettings.json_, delete the three "...BaseUri" values so that it will default to using the _xero.com_ endpoints
