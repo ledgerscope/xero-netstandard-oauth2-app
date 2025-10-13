@@ -1,12 +1,12 @@
 # Ledgerflow implementation
 
-[Legerflow](https://ledgerflow.net/) connects to a variety of accounting service providers, and provides access to company accounts in a unified API.  The Ledgerflow API uses Xero's OpenAPI syntax.  So if your application can connect to Xero, Ledgerflow enables you to connect to a variety of other accounting software providers too with just the same client code.
+[Ledgerscope API](https://docs.ledgerscope.com/) connects to a variety of accounting service providers, and provides access to company accounts in a unified API.  The Ledgerflow API uses Xero's OpenAPI syntax.  So if your application can connect to Xero, Ledgerflow enables you to connect to a variety of other accounting software providers too with just the same client code.
 
 This project is the _Xero NetStandard OAuth 2.0 Starter App_ provided by Xero, with a few modifications to make it compatible with Ledgerflow too.
 
 ### Usage with Ledgerflow
 
-You'll need to start by creating an account with Ledgerflow.  You can get started for free. See the [Legerflow](https://ledgerflow.net/) website for more.
+You'll need to start by creating an account with Ledgerflow.  You can get started for free. See the [Ledgerscope API documentation](https://docs.ledgerscope.com/) for more.
 
 You will then need to create a Partner App within Ledgerflow, including providing some details for the connection options that you want to make available to your users.  
 
