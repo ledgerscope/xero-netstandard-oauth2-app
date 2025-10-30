@@ -21,18 +21,23 @@
         }
 
         <ul class="navbar-nav ml-auto">
+
             <li class="nav-item">
                 <span class="navbar-text font-weight-bold">CONNECT:</span>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="SGD" title="Sage 50, installed">[Sage Desktop]</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="SGO" title="Sage Accounting, SBCA, etc">[Sage Cloud]</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QBO" title="QuickBooks Online, production keys">[QuickBooks Online]</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="QBX" title="QuickBooks Online, development sandbox keys">[QBO Sandbox]</a>
             </li>
@@ -42,9 +47,14 @@
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="XRO" title="Xero">[Xero]</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="LSD" title="LsDat">[LsDat]</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Authorization" asp-action="Index" asp-route-provider="LFI" title="Connect to whatever via Ledgerscope API">[Ledgerflow]</a>
-            </li>
+                </li>
             }
 
             <li class="nav-item" style="margin-left: 10px;">

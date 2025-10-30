@@ -23,6 +23,8 @@ namespace XeroNetStandardApp.ViewComponents
 
         public Task<IViewComponentResult> InvokeAsync()
         {
+            // For this to work, you need a line like this at the top of your appsettings.json file:
+            // "IncludeBetaSystems": true,
             ViewBag.IncludeBetaSystems = _configuration.GetValue<bool>("IncludeBetaSystems");
 
             var tokenIO = LocalStorageTokenIO.Instance;
